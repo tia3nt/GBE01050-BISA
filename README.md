@@ -1,0 +1,2 @@
+# GBE01050-BISA
+Generasi Gigih 2021 group BISA GBE01050
