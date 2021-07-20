@@ -1,0 +1,10 @@
+<body>
+  <h1> <%= act %> <%=  item.name %> </h1>
+  <form action="/items/<%= route %>/<%= item.id %>" method="post">
+    <input type="text" name="items_name" value="<%= item.name %>">
+    <input type="text" name="items_price" value="<%= item.price %>">
+    <button type="submit" name="<%= button %>">"<%= button %>"</button>
+    <button type="reset" name="reset">Reset</button>
+    <a href="/">Cancel Request</a>
+  </form>
+</body>
