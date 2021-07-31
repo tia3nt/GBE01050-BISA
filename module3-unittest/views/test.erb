@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>coba kode</title>
+  </head>
+  <body>
+
+    <h1>Hello there</h1>
+    <h4>lets run this form test</h4>
+    <form class="cobain" action="/" method="put">
+      <input type="text" name="list" value="">
+      <button type="submit" name="submit">Add to list</button>
+    </form>
+    <% unless cp_add.nil? %>
+    <h4>This input result this list:</h4>
+        <ul>
+            <% cp_add.each do |data| %>
+            <li> <%= data %> </li>
+            <% end %>
+        </ul>
+
+
+    <% end %>
+
+    <h4>This is the end of the page</h4>
+
+
+
+
+  </body>
+</html>

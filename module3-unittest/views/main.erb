@@ -1,0 +1,59 @@
+<head>
+  <link rel="stylesheet" href="/master.css">
+</head>
+
+<!--
+<style media="screen">
+  a {
+    height : 10px;
+    width : 30px;
+    background-color:rgb(0,255,10);
+    font-style : normal;
+    text decoration : none;
+    padding : 1px 3px;
+  }
+  table, th, td {
+    /* border-collapse :collapse; */
+    border : 1px, solid, darkblue; */
+  }
+
+  select {
+    width: 20%;
+  }
+
+</style> -->
+
+<table>
+  <h1>List of <%= model %> </h1>
+
+  <% i = 0 %>
+  <thead>
+    <% @@header.each do |list| %>
+    <th width = <%= @@wd[i] %> > <%= list  %> </th>
+    <% i += 1 %>
+    <% end %>
+  </thead>
+  <tbody>
+    <% datas.each do |data| %>
+    <tr>
+      <form action="/<%= route %>/delete/<%= data.get_id%>" method="delete">
+        <%
+        (0..@@getter_number).each do |num|
+        %>
+        <td > <%= data.getter(num) %> </td>
+        <% end %>
+        <td><a href="/<%= route %>/show/<%= data.get_id%>"> Show </a></td>
+        <td><a href="/<%= route %>/edit/<%= data.get_id%>"> Edit </a></td>
+        <td><button type="submit" name="Delete">Delete</button></td>
+      </form>
+
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+
+<a href="/item/new">Add New Item</a> <br>
+<a href="/category/new">Add New Category</a><br>
+<a href="<%= cp_route %>"><%= @@cp_mode %> view</a>

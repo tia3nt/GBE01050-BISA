@@ -1,0 +1,80 @@
+<head>
+  <link rel="stylesheet" href="/master.css">
+</head>
+
+
+<body>
+
+  <h1> <%= act %> <%= title %> </h1>
+
+  <form action="/<%= @@this_mode %>/<%= route %>/<%= data.get_id %>" method="<%= methode_used %>">
+
+    <input style = "width : '3%'" type="text" name="<%= @@header[0].downcase %>" value="<%= data.getter(0) %>" disabled>
+
+      <% (1..@@getter_number-1).each do |i|    %>
+      <% key = @@header[i].downcase %>
+    <input width="<%= @@wd[i] %>" type="text" name="<%= @@header[i].downcase %>" value="<%= prev_data[key] %>">
+    <% i += 1 %>
+    <% end %>
+
+    <button type="submit" name="button_press" value = "<%= button %>"><%= button %></button>
+    <button type="reset" name="reset">Reset</button>
+    <br><br>
+
+    <div class="counterpart">
+      <h5>Remove <%= @@cp_mode %> of this <%= @@this_mode %> by uncheck following checkboxes</h5>
+      <br>
+      <% unless notneeded %>
+      <fieldset>
+
+
+      <% i=0 %>
+      <% for i in 0..counterpart.length-1 do %>
+
+        <input type="checkbox" name="counterpart" value="<%=counterpart[i]%>"  checked>
+        <label for="counterpart"><%= counterpart[i] %></label><br>
+
+        <% end %>
+      </fieldset>
+        <br>
+
+    </div>
+
+
+    <form class="additional_counterpart" action="/<%= @@this_mode %>/edit/<%=data.get_id%>?" method="put">
+      <input type="text" name="hist" value="<%= @@hist %>" >
+      <h6>Click this button to add more <%= @@cp_mode %>s to this <%= @@this_mode %>  </h6>
+      <select class="additional_counterpart" name="counterpart_add">
+          <option value="" placeholder="Select <%= @@cp_mode %> for this <%= @@this_mode %>"></option>
+          <% @@cp_db.each do |list| %>
+          <% next if counterpart.include? list.get_name %>
+          <% next if @@cp_add.include? list.get_name %>
+          <option value="<%= list.get_name %>"><%= list.get_name %></option>
+          <% end %>
+
+
+          <input type="submit" name="button_press" value="Add" >
+          <div class="additional_counterpart" >
+            <input type="text" name="cp_add" value="<%= @@cp_add %>" hidden>
+            <ul>
+              <% unless @@cp_add.nil? %>
+              <% @@cp_add.each do |list| %>
+              <% next if list == "" %>
+              <li> <%= list %> </li>
+              <% end %>
+              <% end %>
+            </ul>
+          </div>
+      </select>
+    </form>
+    <% end %>
+
+    <a href="/">Cancel Request <br> Back to main menu </a>
+
+  </form>
+
+  <h5 style="color:red">
+    Please be caution on selecting the button, this process cannot be undone
+  </h5>
+
+</body>

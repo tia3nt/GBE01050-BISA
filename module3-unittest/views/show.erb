@@ -1,0 +1,49 @@
+<head>
+  <link rel="stylesheet" href="/master.css">
+</head>
+
+<!--
+<style media="screen">
+  a {
+    height : 10px;
+    width : 30px;
+    background-color:rgb(0,255,10);
+    font-style : normal;
+    text decoration : none;
+    padding : 1px 3px;
+  }
+  table, th, td {
+    /* border-collapse :collapse; */
+     border : 1px, solid, darkblue; */
+  }
+
+  select {
+    width: 20%;
+  }
+
+</style> -->
+
+<body>
+  <h1>Data <%= data.get_name %> </h1>
+  <table>
+    <thead>
+      <% i = 0 %>
+      <% @@header.each do |list| %>
+      <th style= "width : <%= @@wd[i] %>" ><%= list %></th>
+      <% i += 1 %>
+      <% end %>
+
+    </thead>
+    <tbody>
+
+      <tr>
+
+          <% (0..@@getter_number).each do |num| %>
+        <td width = '<%= @@wd[num] %>'> <%= data.getter(num) %> </td>
+        <% end %>
+      </tr>
+    </tbody>
+  </table>
+
+  <a href="/">Back to Main Menu</a>
+</body>

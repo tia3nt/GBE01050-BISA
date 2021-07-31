@@ -1,0 +1,53 @@
+<head>
+  <link rel="stylesheet" href="/master.css">
+</head>
+
+<!-- <style media="screen">
+  a {
+    height : 10px;
+    width : 30px;
+    background-color:rgb(0,255,10);
+    font-style : normal;
+    text decoration : none;
+    padding : 1px 3px;
+  }
+  table, th, td {
+    /* border-collapse :collapse; */
+    border : 1px, solid, darkblue; */
+  }
+
+  select {
+    width: 20%;
+  }
+
+</style> -->
+
+<body>
+  <h1>Create a new <%= @@this_mode %></h1>
+
+  <form action="/<%= route.downcase %>/create" method="post">
+    <input style = "width : '3%'" type="text" name="id" value="<%= @@newId %>" disabled>
+    <br><br>
+
+    <% names.each do |list| %>
+    <input type="text" name="<%= list %>" value="" placeholder="<%= data %> <%= list %>">
+    <br><br>
+    <% end %>
+
+    <br><br><br>
+      <label for="<%= @@cp_mode %>">Name all related <%= @@cp_mode %> to this <%= @@this_mode %></label>
+      <br>
+      <fieldset>
+        <%  @@cp_db.each do |list| %>
+        <input type="checkbox" name="<%= @@cp_mode %>" value="<%= list.get_id %>" >
+        <label for="<%= list.get_name%>"><%= list.get_name%></label><br>
+        <% end %>
+
+      </fieldset>
+
+
+    <button type="submit" name="Add <%= @@this_mode %>">Add <%= @@this_mode %></button>
+  </form>
+  <br><br>
+    <a href="/">Back to Main Menu</a>
+</body>

@@ -1,0 +1,16 @@
+<!-- <a href="/counterpart/additional">Load more <%= $cp_mode %> selection></a>
+
+<div class="additional">
+
+
+
+</div>
+-->
+
+
+
+
+data-include= "./views/addOption.erb"
+
+
+<input type="text" name="rack" value="<%= @@perintah %> methode <%= request_method %>" disabled>
