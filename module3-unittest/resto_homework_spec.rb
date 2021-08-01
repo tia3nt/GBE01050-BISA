@@ -12,7 +12,17 @@ allow(Mysql2::Client).to receive(:query).and_return($client_mock)
 $database_mock = double("Database")
 allow(Database).to receive(:new).and_return($database_mock)
 
+expect($database_mock).to receive(db_query_only).with("
+    TRUNCATE TABLES items")
+
+expect($database_mock).to receive(db_query_only).with("
+      TRUNCATE TABLES categories")
+
+expect($databae_mock).to receive(db_query_only).with("
+      TRUNCATE TABLES item_category ")
+
 end
+
 
 RSpec.describe Item do
   describe '#create' do
@@ -26,6 +36,8 @@ RSpec.describe Item do
 
     end
   end
+
+
   # context 'mock query vs actual database db_query_only' do
   #     it "should able to list all tables exactly the same as actual database will do" do
   #
