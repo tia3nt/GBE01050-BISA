@@ -3,13 +3,18 @@ require_relative 'test_helper'
 require_relative "router"
 
 #
-# mock_client = double
-#
-# before(:all) do
-#     allow(Database).to receive(:new).and_return(mock_client)
-# end
 
-describe Item do
+#
+before(:all) do
+$client_mock = double
+allow(Mysql2::Client).to receive(:query).and_return($client_mock)
+
+$database_mock = double("Database")
+allow(Database).to receive(:new).and_return($database_mock)
+
+end
+
+RSpec.describe Item do
   describe '#create' do
     context "validate input data" do
       it "should check validation of the input" do
@@ -21,22 +26,20 @@ describe Item do
 
     end
   end
+  # context 'mock query vs actual database db_query_only' do
+  #     it "should able to list all tables exactly the same as actual database will do" do
+  #
+  #
+  #       expect($mock_db).to receive(:query).with("
+  #         SELECT * FROM items ")
+  #
+  #         data = Item.get_all
+  #
+  #         expect(data).to eq($mock_db)
+  #     end
+  #
+  #   end
 end
-
-#
-# describe Database do
-#   context 'mock query vs actual database db_query_only' do
-#       it "should able to list all tables exactly the same as actual database will do" do
-#         expect($mock_client).to receive(:db_query_only).with("Show tables")
-#
-#         expected_result = Database.db_query_only("Show tables")
-#
-#         expect(expected_result).to eq(true)
-#       end
-#
-#     end
-#   end
-
 
 
 
