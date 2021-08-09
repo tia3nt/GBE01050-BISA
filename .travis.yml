@@ -4,4 +4,4 @@ python:
  
  branches:
  only:
- -master
+ -main
